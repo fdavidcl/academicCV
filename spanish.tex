@@ -1,5 +1,3 @@
-%!TeX program = xelatex
-
 %% start of file `main.tex'.
 %% Copyright 2014 Francois Mouton (moutonf@gmail.com).
 %
@@ -12,7 +10,7 @@
 % available at http://www.latex-project.org/lppl/.
 
 
-\documentclass[10pt,a4paper,sans]{moderncv}        % possible options include font size ('10pt', '11pt' and '12pt'), paper size ('a4paper', 'letterpaper', 'a5paper', 'legalpaper', 'executivepaper' and 'landscape') and font family ('sans' and 'roman')
+\documentclass[11pt,a4paper,sans]{moderncv}        % possible options include font size ('10pt', '11pt' and '12pt'), paper size ('a4paper', 'letterpaper', 'a5paper', 'legalpaper', 'executivepaper' and 'landscape') and font family ('sans' and 'roman')
 
 % moderncv themes
 \moderncvstyle{classic}                             % Only the 'classic' style is fully functional with the modifications made. The other options, 'casual' (default), 'oldstyle' and 'banking' has minor typesetting problems with the current modifications.
@@ -22,7 +20,7 @@
 \definecolor{color1}{rgb}{0.00,0.38,0.43}% dark teal
 \definecolor{color2}{rgb}{0.45,0.45,0.45}% dark grey
 \definecolor{color4}{rgb}{0.04,0.12,0.50}% dark blue
-% \definecolor{link}{rgb}{0.00,0.38,0.43}
+%\definecolor{link}{rgb}{}
 
 %\renewcommand{\familydefault}{\sfdefault}         % to set the default font; use '\sfdefault' for the default sans serif font, '\rmdefault' for the default roman one, or any tex font name
 
@@ -38,15 +36,13 @@
     colorlinks = true,%
     linkcolor  = color4,%
     urlcolor   = color4,%
-    allbordercolors={0 0 0},%
-    pdfborderstyle={/S/U/W 1},%
   }%
   
 }
 %\renewcommand{\familydefault}{\sfdefault}
 
 % character encoding
-% \usepackage[utf8]{inputenc}                       % if you are not using xelatex ou lualatex, replace by the encoding you are using
+\usepackage[utf8]{inputenc}                       % if you are not using xelatex ou lualatex, replace by the encoding you are using
 
 % adjust the page margins
 \usepackage[scale=0.78]{geometry}
@@ -59,18 +55,18 @@
 
 %-------------------Including moderntimeline package-------------------------------------------------------
 
-\usepackage{moderntimeline}
+\usepackage{moderntimeline/moderntimeline}
 
-\tlmaxdates{2007}{2023}                             % Set the scale of the timeline. \tlmaxdates{startDate}{endDate}
+\tlmaxdates{2007}{2019}                             % Set the scale of the timeline. \tlmaxdates{startDate}{endDate}
 
 %-------------------Including xpatch package---------------------------------------------------------------
 
-\usepackage{xpatch}
+\usepackage{xpatch/xpatch}
 
 %-------------------Including Biblatex package-------------------------------------------------------------
 
 \usepackage[url=false,
-    backend=bibtex,                                  % This can be set to either biber or bibtex. If references are missing just change back and forth between biber and bibtex..
+    backend=biber,                                  % This can be set to either biber or bibtex. If references are missing just change back and forth between biber and bibtex..
     style=authoryear,
     doi=false,  
     isbn=false,
@@ -114,58 +110,116 @@
     \ifthenelse{\equal{#7}{}}{}{\phonesymbol~#7\newline}
     \ifthenelse{\equal{#8}{}}{}{\mobilephonesymbol~#8}}
 
-    \usepackage{tikz}
-
-\newcommand{\ExternalLink}{%
-    \tikz[x=1.2ex, y=1.2ex, baseline=-0.05ex]{% 
-        \begin{scope}[x=1ex, y=1ex]
-            \clip (-0.1,-0.1) 
-                --++ (-0, 1.2) 
-                --++ (0.6, 0) 
-                --++ (0, -0.6) 
-                --++ (0.6, 0) 
-                --++ (0, -1);
-            \path[draw, 
-                line width = 0.5, 
-                rounded corners=0.5] 
-                (0,0) rectangle (1,1);
-        \end{scope}
-        \path[draw, line width = 0.5] (0.5, 0.5) 
-            -- (1, 1);
-        \path[draw, line width = 0.5] (0.6, 1) 
-            -- (1, 1) -- (1, 0.6);
-        }
-    }
-    
 %-------------------Personal Data for CV title-----------------------------------------------------------
 % Example:
 \name{David}{Charte}
-\title{Data scientist}                               % optional, remove / comment the line if not wanted
-\address{}{}{Granada, Spain}% optional, remove / comment the line if not wanted; the "postcode city" and and "country" arguments can be omitted or provided empty
+\title{Informático y matemático}                               % optional, remove / comment the line if not wanted
+\address{}{}{Granada, España}% optional, remove / comment the line if not wanted; the "postcode city" and and "country" arguments can be omitted or provided empty
 \phone[mobile]{+34~697~494~169}                   % optional, remove / comment the line if not wanted
 %\phone[fixed]{+2~(345)~678~901}                    % optional, remove / comment the line if not wanted
 %\phone[fax]{+3~(456)~789~012}                      % optional, remove / comment the line if not wanted
-\email{david@deivi.ch}                               % optional, remove / comment the line if not wanted
-\homepage{deivi.ch}                         % optional, remove / comment the line if not wanted
-\extrainfo{born 19 oct 1994}                 % optional, remove / comment the line if not wanted
-\photo[48pt][0.2pt]{avatar}                       % optional, remove / comment the line if not wanted; '64pt' is the height the picture must be resized to, 0.4pt is the thickness of the frame around it (put it to 0pt for no frame) and 'picture' is the name of the picture file stored
-% \github{fdavidcl}
+\email{fdavidcl@protonmail.com}                               % optional, remove / comment the line if not wanted
+\homepage{fdavidcl.me}                         % optional, remove / comment the line if not wanted
+%\extrainfo{additional information}                 % optional, remove / comment the line if not wanted
+%\photo[64pt][0.4pt]{images/picture}                       % optional, remove / comment the line if not wanted; '64pt' is the height the picture must be resized to, 0.4pt is the thickness of the frame around it (put it to 0pt for no frame) and 'picture' is the name of the picture file stored
 %\quote{Quote}                                 % optional, remove / comment the line if not wanted
-
 
 %-------------------------------------------------------------------------------------------------------
 %   Content
 %-------------------------------------------------------------------------------------------------------
 \begin{document}
 
-%\social[linkedin]{fdavidcl}
-\social[github]{fdavidcl}
 %-------------------Resume------------------------------------------------------------------------------
 
 \makecvtitle
 
-\vspace{-2em}
-\section{Experience}
+%-------------------Education Section-------------------------------------------------------------------
+
+\section{Educación}
+
+% For a date range: (To indicate 'up to present', set EndYear to 0)
+% Format:  \tlcventry{StartYear}{EndYear}{Degree}{Institution}{City}{\textit{Grade}}{Description}  % Arguments 3 (Degree) to 6 (Grade) can be left empty. 
+% Example: \tlcventry{2012}{0}{BSc Computer Science}{University of MyCity}{MyCity}{}{Also completed several random courses}
+
+\tlcventry{2017}{0}{Máster en Ciencia de Datos e Ingeniería de Computadores}{Universidad de Granada}{Granada}{}{Énfasis en ciencia de datos}
+
+\tlcventry{2012}{2017}{Grado en Ingeniería Informática}{Universidad de Granada}{Granada}{\textit{9.40/10}}{Énfasis en ciencias de la computación e ingeniería de computadores}
+
+\tlcventry{2012}{2017}{Grado en Matemáticas}{Universidad de Granada}{Granada}{\textit{9.04/10}}{}
+
+% For a single year:
+% Format:  \tldatecventry{StartYear}{Degree}{Institution}{City}{\textit{Grade}}{Description}
+% Example: \tldatecventry{2008}{Senior Certificate}{High School MyCity}{MyCity}{\textit{80\%}}{Passed with distinction}
+
+\tldatecventry{2017}{International Summer School on Deep Learning}{Universidad de Deusto y Universidad Rovira i Virgili}{}{}{}
+
+\tldatecventry{2014}{Aproximación práctica a la Ciencia de Datos y Big Data}{UNIA}{}{}{}
+
+\tldatecventry{2013}{Nuevas Tendencias en Ingeniería de Computadores}{Centro Mediterráneo (UGR)}{}{}{}
+
+
+\tlcventry{2007}{2012}{Proyecto de detección y Estímulo del Talento Matemático (ESTALMAT)}{Sociedad Andaluza de Educación Matemática Thales}{Granada}{}{}
+
+%-------------------Achievements Section----------------------------------------------------------------
+
+%% \section{Achievements}
+
+%% % Format:  \cvlistitem{Achievement}
+%% % Example: \cvlistitem{Received best student award}
+%% % Example: \cvlistitem{Another achievement. This achievement is particularly long and therefore normally spans over several lines. Did you notice the indentation when the line wraps?}
+
+%% \cvlistitem{Received best student award}
+%% \cvlistitem{Another achievement. This achievement is particularly long and therefore normally spans over several lines. Did you notice the indentation when the line wraps?}
+
+%-------------------Languages Section-------------------------------------------------------------------
+
+\section{Idiomas}
+
+% Format:  \cvitemwithcomment{Language}{Skill level}{Comment}
+% Example: \cvitemwithcomment{English}{Native}{Mother Tongue}
+% Example: \cvitemwithcomment{French}{Fluent}{Daily practice, all work performed in English}
+
+\cvitemwithcomment{Español}{Nativo}{}
+\cvitemwithcomment{Inglés}{Nivel C1}{Cambridge CAE: Nivel C1 con habilidades de C2}
+\cvitemwithcomment{Francés}{Nivel B2}{Certificado DELF B2}
+
+%-------------------Skills Matrix Section----------------------------------------------------------------
+
+\section{Habilidades}
+
+% For items with categories: 
+% Format:  \cvdoubleitem{Category}{List of skills}{Category Name}{List of skills}
+% Note: It looks better if the category is bold with \textbf{}
+% Example:
+% \subsection{Development}
+% \cvdoubleitem{\textbf{Languages}}{C\#, C\+\+, Java}{\textbf{Databases}}{MSSQL, MySQL}
+%
+% For a bullet list without categories:
+% Format:  \cvlistdoubleitem{Skill 1}{Skill 2}
+% Example: 
+% \subsection{Development}
+% \cvlistdoubleitem{C\#, Java, Ruby}{MSSQL, MySQL}
+% \cvlistdoubleitem{Photoshop}{Windows, Linux. In the single column list, this item is particularly long to wrap over several lines.}
+
+\subsection{Desarrollo}
+\cvdoubleitem{\textbf{Lenguajes}}{Ruby, C++, R, Python, Java, C, Shell}{\textbf{Web}}{HTML, JavaScript, CSS, Responsive web design, Jekyll, Rails}
+\cvdoubleitem{\textbf{Utilidades}}{Emacs, Git, GitHub}{\textbf{Data Science}}{MXNet, Keras}
+             
+
+\subsection{Administración de sistemas}
+\cvdoubleitem{\textbf{Sistemas}}{Linux (Arch, Ubuntu), UNIX}{\textbf{Web}}{NGINX, Apache}
+
+\subsection{Herramientas}
+\cvdoubleitem{\textbf{Documentos}}{\LaTeX{}, LibreOffice}{\textbf{Gráficos}}{Inkscape, Krita}
+             
+%% \subsection{Otras}
+%% \cvlistdoubleitem{Fast learner}{Good mediator}
+
+%-------------------Experience Section------------------------------------------------------------------
+
+
+
+\section{Experiencia}
 
 %% %-------------------Vocational Experience---------------------------------------------------------------
 
@@ -184,111 +238,10 @@
 %% %      \item Did some more administrating
 %% %   \end{itemize}}
 
-\tlcventry{2018}{0}{Doctoral student}{Universidad de Granada}{}{supervisors: Francisco Herrera \& Francisco Charte}{Lecturer training contract under Spanish FPU program ref. FPU17/04069, defending thesis soon.\begin{itemize}\item \textbf{Main topic}: \emph{Finding alternative representations for data through deep learning techniques}\item Collaborated with \textbf{Repsol} on optimization of refinery processes (machine learning and autoencoders)\item Collaborated with \textbf{ArcelorMittal} on \href{https://github.com/ari-dasci/S-metallograph-segmentation}{semantic segmentation of metallographic microstructures \ExternalLink}\newline (adaptation and training of semi-supervised fully convolutional models)\item Directed two bachelor's theses on automatic melody synthesis with autoencoders and neural search for COVID-19 detection in chest X-rays, respectively\item Published \href{https://www.youtube.com/playlist?list=PL88MWrW4s4nf-Bc3hccxt3Att8TSS-LBn}{a 5-part free online course \ExternalLink} (in Spanish) on linear algebra and dimensionality reduction\end{itemize}
+\tlcventry{2016}{0}{Investigador}{Universidad de Granada}{}{}{Beca de iniciación a la investigación.
+Temática: \emph{Análisis interpretativo de técnicas de deep learning no supervisadas y
+extracción de modelos multi-view para aprendizaje supervisado}
 }
-\tlcventry{2020}{0}{Online course author and lecturer}{CampusMVP}{Spain}{}{Course on Data Science and Machine Learning with both video-based and written lectures
-}
-\tldatecventry{2018}{Researcher}{Universidad de Granada}{}{supervisor: Francisco Herrera}{Research contract with project \emph{BigDaPTOOLS}. Task: \emph{Development of data preprocessing libraries in R}
-}
-\tlcventry{2016}{2018}{Undergraduate researcher}{Universidad de Granada}{}{}{Research grant.
-Topic: \emph{Interpretative analysis of unsupervised deep learning techniques and extraction of multi-view models for supervised learning}
-}
-%-------------------Education Section-------------------------------------------------------------------
-
-\section{Education}
-
-% For a date range: (To indicate 'up to present', set EndYear to 0)
-% Format:  \tlcventry{StartYear}{EndYear}{Degree}{Institution}{City}{\textit{Grade}}{Description}  % Arguments 3 (Degree) to 6 (Grade) can be left empty. 
-% Example: \tlcventry{2012}{0}{BSc Computer Science}{University of MyCity}{MyCity}{}{Also completed several random courses}
-
-%\tlcventry{2018}{0}{PhD in Computer Science}{Universidad de Granada}{Granada}{}{}
-
-\tlcventry{2017}{2018}{M.Sc. in Data Science and Computer Engineering}{Universidad de Granada}{Granada}{}{Emphasis in data science}
-
-\tlcventry{2012}{2017}{B.Sc. in Computer Science}{Universidad de Granada}{Granada}{\textit{9.40/10}}{}
-
-\tlcventry{2012}{2017}{B.Sc. in Mathematics}{Universidad de Granada}{Granada}{\textit{9.04/10}}{}
-
-% For a single year:
-% Format:  \tldatecventry{StartYear}{Degree}{Institution}{City}{\textit{Grade}}{Description}
-% Example: \tldatecventry{2008}{Senior Certificate}{High School MyCity}{MyCity}{\textit{80\%}}{Passed with distinction}
-
-\tldatecventry{2017}{Intl. Summer School on Deep Learning}{Universidad de Deusto \& Rovira i Virgili University}{}{}{}
-
-\tldatecventry{2014}{A practical approach to Data Science and Big Data}{Intl. University of Andalusia (UNIA)}{}{}{}
-
-\tldatecventry{2013}{New Trends on Computer Engineering}{Centro Mediterráneo (UGR)}{}{}{}
-
-
-\tlcventry{2007}{2012}{Project for detection/stimulus of mathematical talent (ESTALMAT)}{SAEM-Thales}{Granada}{}{}
-
-%-------------------Achievements Section----------------------------------------------------------------
-
-%% \section{Achievements}
-
-%% % Format:  \cvlistitem{Achievement}
-%% % Example: \cvlistitem{Received best student award}
-%% % Example: \cvlistitem{Another achievement. This achievement is particularly long and therefore normally spans over several lines. Did you notice the indentation when the line wraps?}
-
-%% \cvlistitem{Received best student award}
-%% \cvlistitem{Another achievement. This achievement is particularly long and therefore normally spans over several lines. Did you notice the indentation when the line wraps?}
-
-%-------------------Languages Section-------------------------------------------------------------------
-
-% \section{Languages}
-
-% Format:  \cvitemwithcomment{Language}{Skill level}{Comment}
-% Example: \cvitemwithcomment{English}{Native}{Mother Tongue}
-% Example: \cvitemwithcomment{French}{Fluent}{Daily practice, all work performed in English}
-
-% \cvitemwithcomment{Spanish}{Native}{}
-% \cvitemwithcomment{English}{C1 level}{Cambridge CAE grade A: C1 level with C2 abilities}
-% \cvitemwithcomment{French}{B2 level}{DELF B2 certificate}
-% \cvitemwithcomment{Swedish}{A2 level}{}
-
-%-------------------Skills Matrix Section----------------------------------------------------------------
-
-\section{Skills}
-
-% For items with categories: 
-% Format:  \cvdoubleitem{Category}{List of skills}{Category Name}{List of skills}
-% Note: It looks better if the category is bold with \textbf{}
-% Example:
-% \subsection{Development}
-% \cvdoubleitem{\textbf{Languages}}{C\#, C\+\+, Java}{\textbf{Databases}}{MSSQL, MySQL}
-%
-% For a bullet list without categories:
-% Format:  \cvlistdoubleitem{Skill 1}{Skill 2}
-% Example: 
-% \subsection{Development}
-% \cvlistdoubleitem{C\#, Java, Ruby}{MSSQL, MySQL}
-% \cvlistdoubleitem{Photoshop}{Windows, Linux. In the single column list, this item is particularly long to wrap over several lines.}
-
-\cvitem{\textbf{Soft skills}}{Learns fast $\cdot$ Loves teaching $\cdot$ Team player $\cdot$ Natural problem solver $\cdot$ Organized and meticulous}
-\cvitem{\textbf{Languages}}{Spanish (native)~$\cdot$~English (Advanced, CEFR C1)~$\cdot$~French (Intermediate, CEFR B2)~$\cdot$~Swedish (Basic)}
-\subsection{Data Science}
-\cvdoubleitem{\textbf{Models}}{Autoencoders $\cdot$ (Fully) Convolutional Networks $\cdot$ Standard machine learning}{\textbf{Technologies}}{Tensorflow/Keras $\cdot$ Pytorch $\cdot$ Scikit-Learn $\cdot$ Matplotlib}
-
-
-\subsection{Development}
-\cvdoubleitem{\textbf{Programming}}{Python $\cdot$ R $\cdot$ Ruby $\cdot$ C++ $\cdot$ C $\cdot$ Shell $\cdot$ SQL}{\textbf{Web}}{HTML $\cdot$ JavaScript $\cdot$ CSS $\cdot$ RWD $\cdot$ Vue.js}
-             
-
-\subsection{Misc}
-\cvdoubleitem{\textbf{Systems}}{Linux/UNIX $\cdot$ Docker $\cdot$ NGINX}{\textbf{Tools}}{Git $\cdot$ GitHub $\cdot$ \LaTeX $\cdot$ Emacs}
-
-%\subsection{Utilities}
-%\cvdoubleitem{\textbf{Documents}}{\LaTeX{}, LibreOffice}{\textbf{Graphics}}{Inkscape, Krita}
-             
-%% \subsection{Otras}
-%% \cvlistdoubleitem{Fast learner}{Good mediator}
-
-%-------------------Experience Section------------------------------------------------------------------
-
-
-
-
-\clearpage
 %-------------------Publications Section----------------------------------------------------------------
 % The cvitem commands needs to be altered to correctly print all publications with the moderntime package.
 % The cvitem command is edited to remove all forced punctuation within the command.
@@ -303,29 +256,25 @@ Topic: \emph{Interpretative analysis of unsupervised deep learning techniques an
 % Example: \printbibliography[type=inproceedings,title={Conference Publications}]
 % Example: \printbibliography[type=thesis,title={Thesis}]
 
-\printbibliography[type=article,title={Journal Publications}]
-%\printbibliography[type=inproceedings,title={Conference Publications}]
+\printbibliography[type=article,title={Publicaciones en revista}]
+\printbibliography[type=inproceedings,title={Publicaciones en congreso}]
 %\printbibliography[type=thesis,title={Thesis}]
-
-\vspace{-.5em}
-\cvitem{\textbf{Submitted works}}{David Charte, Francisco Charte and Francisco Herrera. ``Reducing Data Complexity using Autoencoders with Class-informed Loss Functions''}
-\cvitem{}{Julián Luengo, Raúl Moreno, Iván Sevillano, David Charte, Adrián Peláez-Vegas, et al. ``A tutorial on the segmentation of metallographic images: taxonomy, new MetalDAM dataset, deep learning-based ensemble model, experimental analysis and challenges''}
 
 \input{cvitem_modifications/cvitem_moderncvclassic} % Reverting changes to cvitem.
 
 %-------------------PhD Thesis Section------------------------------------------------------------------
 
-%\section{Bachelor's Thesis}
+\section{Proyecto Fin de Grado}
 
 % Format:  \cvitem{Section Name}{Description}
 % Example: \cvitem{title}{\emph{The title of my PhD goes here}}
 % Example: \cvitem{supervisors}{My supervisors' names go here}
 % Example: \cvitem{description}{Short thesis abstract}
 
-%\cvitem{Title}{\href{http://dx.doi.org/10.13140/RG.2.2.16155.57123/1}{\emph{Reducción de la dimensionalidad en problemas de clasificación con Deep Learning}}}
-%\cvitem{Supervisor}{Francisco Herrera Triguero}
-%\cvitem{Description}{Theoretical analysis of techniques based on deep neural networks that tackle the dimensionality reduction problem. Software for usage of these models and visualization generation.}
-%\cvitem{Grade}{10/10 (Distinction)}
+\cvitem{Título}{\href{http://dx.doi.org/10.13140/RG.2.2.16155.57123/1}{\emph{Reducción de la dimensionalidad en problemas de clasificación con Deep Learning}}}
+\cvitem{Tutor}{Francisco Herrera Triguero}
+\cvitem{Descripción}{Análisis teórico de técnicas basadas en redes neuronales profundas que permiten abordar el problema de reducción de la dimensionalidad. Software para el uso de dichas técnicas y generación de visualizaciones sobre ellas.}
+\cvitem{Calificación}{Matrícula de Honor: 10}
 
 %-------------------Masters Thesis Section--------------------------------------------------------------
 
@@ -340,10 +289,22 @@ Topic: \emph{Interpretative analysis of unsupervised deep learning techniques an
 %% \cvitem{supervisors}{My supervisors' names go here}
 %% \cvitem{description}{Short thesis abstract}
 
+%-------------------Interests Section-------------------------------------------------------------------
+
+\section{Intereses y comunidades}
+
+% Format:  \cvitem{Hobby}{Description}
+% Example: \cvitem{Gaming}{Computer Games}
+% Example: \cvitem{Sport}{Golf, Tennis}
+\cvitem{\textbf{Intereses}}{Ciencia de datos, cultura libre, idiomas y lenguajes, divulgación}
+
+\tlcventry{2014}{0}{\href{https://libreim.github.io}{LibreIM}}{Comunidad dedicada a Matemáticas e Informática}{Cofundador}{}{}
+\tlcventry{2016}{2017}{\href{https://interferencias.github.io}{Interferencias}}{Grupo sin ánimo de lucro interesado en derechos online y seguridad}{Participante}{}{}
+
 
 %-------------------Projects---------------------------------------------------------------
 
-\section{Projects}
+\section{Proyectos}
 
 %\subsection{Vocational}
 
@@ -360,30 +321,18 @@ Topic: \emph{Interpretative analysis of unsupervised deep learning techniques an
 %      \item Did some more administrating
 %   \end{itemize}}
 
-\tldatecventry{2021}{\href{https://github.com/fdavidcl/slicer-conv}{Slicer (convolutional)}}{Convolutional autoencoder model for complexity reduction}{}{}{Source code: \url{http://github.com/fdavidcl/slicer-conv}\newline%
-Tensorflow implementation of a convolutional autoencoder which learns from labels with an SVM loss.}
+\tlcventry{2016}{0}{\href{http://ruta.software}{Ruta}}{Software for unsupervised deep architectures}{}{}{Código fuente: \url{https://github.com/fdavidcl/ruta}\newline%
+Un paquete de R para entrenamiento de modelos de Deep Learning no supervisados.}
 
-\tldatecventry{2017}{\href{http://cometa.ujaen.es}{Cometa}}{The comprehensive multi-label data archive}{}{}{Source code: \url{https://github.com/fdavidcl/cometa}\newline%
-Docker container that deploys an automatized web repository to prepare and host multi-label datasets.}
+\tldatecventry{2017}{\href{http://cometa.ml}{Cometa}}{The comprehensive multi-label data archive}{}{}{Código fuente: \url{https://github.com/fdavidcl/cometa}\newline%
+Un repositorio web automatizado para preparar y albergar datos multietiqueta.}
 
-\tldatecventry{2016}{\href{http://ruta.software}{Ruta}}{Software for unsupervised deep architectures}{}{}{Source code: \url{https://github.com/fdavidcl/ruta}\newline%
-R package for training unsupervised Deep Learning models.}
+\tlcventry{2014}{0}{\href{http://fcharte.github.io/mldr}{mldr}}{R package for analyzing and manipulating multilabel datasets}{}{}{Código fuente: \url{https://github.com/fcharte/mldr}\newline%
+Una biblioteca en R para análisis exploratorio de conjuntos de datos multietiqueta.}
 
-\tldatecventry{2014}{\href{http://fcharte.github.io/mldr}{mldr}}{R package for analyzing and manipulating multilabel datasets}{}{}{Source code: \url{https://github.com/fcharte/mldr}\newline%
-R library for exploratory data analysis of multi-label datasets.}
+\tldatecventry{2014}{\href{http://fdavidcl.me/veaml}{Veaml}}{A markup language for video editing}{}{}{Código fuente: \url{https://github.com/fdavidcl/veaml}\newline%
+Un lenguaje de marcado y parser para tareas de edición de vídeo, en C++.}
 
-
-%-------------------Interests Section-------------------------------------------------------------------
-
-\section{Interests and communities}
-
-% Format:  \cvitem{Hobby}{Description}
-% Example: \cvitem{Gaming}{Computer Games}
-% Example: \cvitem{Sport}{Golf, Tennis}
-\cvitem{\textbf{Interests}}{Data science, free culture, (human and machine) languages, scientific dissemination}
-
-\tlcventry{2014}{2020}{\href{https://libreim.github.io}{LibreIM}}{Student community dedicated to Mathematics and Computer Science}{Co-founder}{}{\begin{itemize}\item We organized \href{https://libreim.github.io/t/seminarios/}{regular talks \ExternalLink} for compsci \& math students, several of them given by myself\end{itemize}}
-\tlcventry{2016}{2017}{\href{https://interferencias.tech}{Interferencias}}{Non-profit group interested in online rights and security}{Participant}{}{}
 
 %-------------------References Section------------------------------------------------------------------
 
@@ -425,40 +374,40 @@ R library for exploratory data analysis of multi-label datasets.}
 % \addcontentsline{toc}{subsection}{Portrait}
 % \includepdf[pages=-]{appendix/CertificatePortrait.pdf}
 
-%% \phantomsection
-%% \addcontentsline{toc}{section}{Certificados}
+\phantomsection
+\addcontentsline{toc}{section}{Certificados}
 
-%% \phantomsection
-%% \addcontentsline{toc}{subsection}{Grado en Ingeniería Informática}
-%% \includepdf[pages=-]{appendix/grado/resguardo_informatica}
+\phantomsection
+\addcontentsline{toc}{subsection}{Grado en Ingeniería Informática}
+\includepdf[pages=-]{appendix/grado/resguardo_informatica}
 
-%% \phantomsection
-%% \addcontentsline{toc}{subsection}{Grado en Matemáticas}
-%% \includepdf[pages=-]{appendix/grado/resguardo_matematicas}
+\phantomsection
+\addcontentsline{toc}{subsection}{Grado en Matemáticas}
+\includepdf[pages=-]{appendix/grado/resguardo_matematicas}
 
-%% \phantomsection
-%% \addcontentsline{toc}{subsection}{International Summer School on Deep Learning}
-%% \includepdf[pages=-]{appendix/cursos/deeplearn2017}
+\phantomsection
+\addcontentsline{toc}{subsection}{International Summer School on Deep Learning}
+\includepdf[pages=-]{appendix/cursos/deeplearn2017}
 
-%% \phantomsection
-%% \addcontentsline{toc}{subsection}{Aproximación práctica a la Ciencia de Datos y Big Data}
-%% \includepdf[pages=-,landscape=true]{appendix/cursos/ciencia_datos}
+\phantomsection
+\addcontentsline{toc}{subsection}{Aproximación práctica a la Ciencia de Datos y Big Data}
+\includepdf[pages=-,landscape=true]{appendix/cursos/ciencia_datos}
 
-%% \phantomsection
-%% \addcontentsline{toc}{subsection}{Nuevas Tendencias en Ingeniería de Computadores}
-%% \includepdf[pages=1,landscape=true]{appendix/cursos/tendencias-ic}
+\phantomsection
+\addcontentsline{toc}{subsection}{Nuevas Tendencias en Ingeniería de Computadores}
+\includepdf[pages=1,landscape=true]{appendix/cursos/tendencias-ic}
 
-%% \phantomsection
-%% \addcontentsline{toc}{subsection}{Estalmat}
-%% \includepdf[pages=-,landscape=true]{appendix/cursos/estalmat}
+\phantomsection
+\addcontentsline{toc}{subsection}{Estalmat}
+\includepdf[pages=-,landscape=true]{appendix/cursos/estalmat}
 
-%% \phantomsection
-%% \addcontentsline{toc}{subsection}{Inglés C1}
-%% \includepdf[pages=1]{appendix/idiomas/english_cae}
+\phantomsection
+\addcontentsline{toc}{subsection}{Inglés C1}
+\includepdf[pages=1]{appendix/idiomas/english_cae}
 
-%% \phantomsection
-%% \addcontentsline{toc}{subsection}{Francés B2}
-%% \includepdf[pages=-,landscape=true]{appendix/idiomas/francais_b2}
+\phantomsection
+\addcontentsline{toc}{subsection}{Francés B2}
+\includepdf[pages=-,landscape=true]{appendix/idiomas/francais_b2}
 
 %-------------------Cover letter------------------------------------------------------------------------
 

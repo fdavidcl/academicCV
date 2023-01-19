@@ -8,4 +8,10 @@ main-blx.bib
 *.bbl
 *.blg
 *.dvi
-
+*.txt
+*.md
+*.old
+.*
+appendix
+*synctex*
+*.pdf
