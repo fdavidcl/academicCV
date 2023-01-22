@@ -45,8 +45,9 @@
 %------------------Compile with xelatex!--------------------------------
 \usepackage{fontspec} % For loading fonts
 \defaultfontfeatures{Mapping=tex-text}
-\setsansfont[]{Liberation Sans}
-\setmonofont[]{DejaVu Sans Mono} % Mono font
+\setmainfont[]{Fira Sans}
+\setsansfont[]{Arial}
+% \setmonofont[]{Inconsolata} % Mono font
 
 %-------------------Mess with link colors ------------------------------
 \AtBeginDocument{%
@@ -65,7 +66,7 @@
 % \usepackage[utf8]{inputenc}                       % if you are not using xelatex ou lualatex, replace by the encoding you are using
 
 % adjust the page margins
-\usepackage[scale=0.82]{geometry}
+\usepackage[hscale=0.8,vscale=0.9,vmarginratio=3:2]{geometry}
 \setlength{\hintscolumnwidth}{2cm}                % if you want to change the width of the column of the timeline
 %\setlength{\makecvtitlenamewidth}{10cm}           % for the 'classic' style, if you want to force the width allocated to your name and avoid line breaks. Be careful though, the length is normally calculated to avoid any overlap with your personal info; use this at your own typographical risks.
 
@@ -162,7 +163,7 @@
     
 %-------------------Personal Data for CV title-----------------------------------------------------------
 % Example:
-\name{David}{Charte}
+\name{\rmfamily\bfseries David}{\rmfamily\bfseries Charte}
 \title{Data scientist}                               % optional, remove / comment the line if not wanted
 \address{}{}{Granada, Spain}% optional, remove / comment the line if not wanted; the "postcode city" and and "country" arguments can be omitted or provided empty
 \phone[mobile]{+34~697~494~169}                   % optional, remove / comment the line if not wanted
@@ -189,8 +190,6 @@
 \social[github]{fdavidcl}
 %-------------------Resume------------------------------------------------------------------------------
 
-\vspace*{-3em}
-
 \makecvtitle
 
 \vspace{-3em}
@@ -215,7 +214,7 @@
 % \cvlistdoubleitem{Photoshop}{Windows, Linux. In the single column list, this item is particularly long to wrap over several lines.}
 
 
-\cvitem{\textbf{}}{Data scientist with expertise in unsupervised and supervised deep learning, image processing, classification problems and a strong mathematical foundation.}
+\cvitem{\textbf{}}{Data scientist with expertise in unsupervised and supervised deep learning, computer vision, classification problems and a strong mathematical foundation.}
 \cvitem{\textbf{}}{Learns fast $\cdot$ Loves teaching $\cdot$ Team player $\cdot$ Organized and meticulous}
 \cvitem{\textbf{Speaks}}{Spanish (native)~$\cdot$~English (advanced)~$\cdot$~French (intermediate)~$\cdot$~Swedish (basic)}
 \subsection{Technologies}
@@ -225,7 +224,7 @@
 
 
 % \subsection{Development}
-\cvdoubleitem{\textbf{Languages}}{Python $\cdot$ R $\cdot$ Ruby $\cdot$ C++ $\cdot$ C $\cdot$ Shell $\cdot$ SQL}{\textbf{Web}}{HTML $\cdot$ JavaScript $\cdot$ CSS $\cdot$ RWD $\cdot$ Vue.js}
+\cvdoubleitem{\textbf{Languages}}{Python $\cdot$ R $\cdot$ Ruby $\cdot$ C++ $\cdot$ C $\cdot$ Shell $\cdot$ SQL}{\textbf{Web}}{HTML $\cdot$ JavaScript $\cdot$ CSS $\cdot$ RWD $\cdot$ React}
              
 
 % \subsection{Misc}
@@ -260,10 +259,10 @@
 %% %      \item Did some more administrating
 %% %   \end{itemize}}
 
-\tlcventry{2018}{2022}{Doctoral researcher}{University of Granada, Spain}{}{}{Lecturer training contract under government-funded program ref. FPU17/04069, defending thesis soon.\begin{itemize}
+\tlcventry{2018}{2022}{Doctoral researcher}{University of Granada, Spain}{}{}{Lecturer training contract under government-funded program ref. FPU17/04069.\begin{itemize}
     \item Main topic: \emph{Finding alternative representations for data through deep learning techniques}
     \item Authored 11 JCR journal articles (8 in Q1) and 7 software packages
-    \item Collaboration: \textbf{Hospital Universitario de Granada}, detection of COVID-19 in X-ray images (deep learning)
+    \item Collaboration: \textbf{Hospital Univ. de Granada}, detection of COVID-19 in X-ray images (deep learning)
     \item Collaboration: \textbf{Repsol}, optimization of refinery processes (machine learning and autoencoders)
     \item Collaboration: \textbf{ArcelorMittal}, \href{https://github.com/ari-dasci/S-metallograph-segmentation}{semantic segmentation of metallographic microstructures \ExternalLink}\item Directed bachelor's thesis: Automatic melody synthesis with Google Magenta \item Directed bachelor's thesis: Neural search for COVID-19 detection in chest X-rays
     \item Published \href{https://www.youtube.com/playlist?list=PL88MWrW4s4nf-Bc3hccxt3Att8TSS-LBn}{a 5-part free online course \ExternalLink} (in Spanish) on linear algebra and dimensionality reduction\end{itemize}
@@ -272,7 +271,7 @@
 }
 \tldatecventry{2018}{Researcher}{University of Granada, Spain}{}{supervisor: Francisco Herrera}{Contract with BBVA-funded project \emph{BigDaPTOOLS}. Development of data preprocessing libraries in R
 }
-\tlcventry{2016}{2018}{Undergraduate researcher}{University of Granada, Spain}{}{}{Analysis of unsupervised deep learning techniques, extraction of multi-view models for supervised learning}
+\tlcventry{2016}{2018}{Undergraduate researcher}{University of Granada, Spain}{}{}{Analysis of unsupervised deep learning models, extraction of multi-view models for supervised learning}
 %-------------------Education Section-------------------------------------------------------------------
 
 % \vspace{-1em}
@@ -282,7 +281,7 @@
 % Format:  \tlcventry{StartYear}{EndYear}{Degree}{Institution}{City}{\textit{Grade}}{Description}  % Arguments 3 (Degree) to 6 (Grade) can be left empty. 
 % Example: \tlcventry{2012}{0}{BSc Computer Science}{University of MyCity}{MyCity}{}{Also completed several random courses}
 
-\tlcventry{2022}{2022}{PhD in Computer Science}{University of Granada}{Granada}{Focus on data science and machine learning}{}
+\tldatecventry{2022}{PhD in Computer Science}{University of Granada, Spain: \itshape cum laude}{}{}{Focus on data science and machine learning}
 
 \tlcventry{2017}{2018}{M.Sc. in Data Science and Computer Engineering}{University of Granada, Spain}{}{}{}
 
@@ -427,6 +426,78 @@
 % Example: \cvitem{Gaming}{Computer Games}
 % Example: \cvitem{Sport}{Golf, Tennis}
 
+% \cvitem{\textbf{Interests}}{Data science, free culture, (human and machine) languages, scientific dissemination}
+
+% \tlcventry{2014}{2020}{\href{https://libreim.github.io}{LibreIM}}{Student community dedicated to Mathematics and Computer Science}{Co-founder}{}{\begin{itemize}\item We organized \href{https://libreim.github.io/t/seminarios/}{regular talks \ExternalLink} for compsci \& math students, several of them given by myself\end{itemize}}
+% \tlcventry{2016}{2017}{\href{https://interferencias.tech}{Interferencias}}{Non-profit group interested in online rights and security}{Participant}{}{}
+
+%-------------------PhD Thesis Section------------------------------------------------------------------
+
+%\section{Bachelor's Thesis}
+
+% Format:  \cvitem{Section Name}{Description}
+% Example: \cvitem{title}{\emph{The title of my PhD goes here}}
+% Example: \cvitem{supervisors}{My supervisors' names go here}
+% Example: \cvitem{description}{Short thesis abstract}
+
+%\cvitem{Title}{\href{http://dx.doi.org/10.13140/RG.2.2.16155.57123/1}{\emph{Reducción de la dimensionalidad en problemas de clasificación con Deep Learning}}}
+%\cvitem{Supervisor}{Francisco Herrera Triguero}
+%\cvitem{Description}{Theoretical analysis of techniques based on deep neural networks that tackle the dimensionality reduction problem. Software for usage of these models and visualization generation.}
+%\cvitem{Grade}{10/10 (Distinction)}
+
+%-------------------Masters Thesis Section--------------------------------------------------------------
+
+%% \section{Master thesis}
+
+%% % Format:  \cvitem{Section Name}{Description}
+%% % Example: \cvitem{title}{\emph{The title of my Masters goes here}}
+%% % Example: \cvitem{supervisors}{My supervisors' names go here}
+%% % Example: \cvitem{description}{Short thesis abstract}
+
+%% \cvitem{title}{\emph{The title of my Masters goes here}}
+%% \cvitem{supervisors}{My supervisors' names go here}
+%% \cvitem{description}{Short thesis abstract}
+
+
+%-------------------Projects---------------------------------------------------------------
+
+% \section{Projects}
+
+% %\subsection{Vocational}
+
+% % Format: \tlcventry{StartYear}{EndYear}{Job title}{Employer}{City}{Country (optional)}{General description no longer than 1--2 lines.\newline{}%
+% % Example:
+% % \tlcventry{2008}{2011}{System Administrator}{Simple Solutions}{MyCity}{}{Did system administrative work.\newline{}%
+% % Main Duties:%
+% %  \begin{itemize}%
+% %      \item Administrate the servers;
+% %      \item Administrate employee computers 
+% %          \begin{itemize}%
+% %              \item All employee's computers had to be up to date;
+% %          \end{itemize}
+% %      \item Did some more administrating
+% %   \end{itemize}}
+
+% \tldatecventry{2021}{\href{https://github.com/fdavidcl/slicer-conv}{Slicer (convolutional)}}{Convolutional autoencoder model for complexity reduction}{}{}{Source code: \url{http://github.com/fdavidcl/slicer-conv}\newline%
+% Tensorflow implementation of a convolutional autoencoder which learns from labels with an SVM loss.}
+
+% \tldatecventry{2017}{\href{http://cometa.ujaen.es}{Cometa}}{The comprehensive multi-label data archive}{}{}{Source code: \url{https://github.com/fdavidcl/cometa}\newline%
+% Docker container that deploys an automatized web repository to prepare and host multi-label datasets.}
+
+% \tldatecventry{2016}{\href{http://ruta.software}{Ruta}}{Software for unsupervised deep architectures}{}{}{Source code: \url{https://github.com/fdavidcl/ruta}\newline%
+% R package for training unsupervised Deep Learning models.}
+
+% \tldatecventry{2014}{\href{http://fcharte.github.io/mldr}{mldr}}{R package for analyzing and manipulating multilabel datasets}{}{}{Source code: \url{https://github.com/fcharte/mldr}\newline%
+% R library for exploratory data analysis of multi-label datasets.}
+
+
+% %-------------------Interests Section-------------------------------------------------------------------
+
+% \section{Interests and communities}
+
+% % Format:  \cvitem{Hobby}{Description}
+% % Example: \cvitem{Gaming}{Computer Games}
+% % Example: \cvitem{Sport}{Golf, Tennis}
 % \cvitem{\textbf{Interests}}{Data science, free culture, (human and machine) languages, scientific dissemination}
 
 % \tlcventry{2014}{2020}{\href{https://libreim.github.io}{LibreIM}}{Student community dedicated to Mathematics and Computer Science}{Co-founder}{}{\begin{itemize}\item We organized \href{https://libreim.github.io/t/seminarios/}{regular talks \ExternalLink} for compsci \& math students, several of them given by myself\end{itemize}}
