@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1674429846 "e:/documents/work/academicResearcherCV/main.tex" "main.pdf" "main" 1674429846
+["pdflatex"] 1674430382 "e:/documents/work/academicResearcherCV/main.tex" "main.pdf" "main" 1674430382
   "c:/texlive/2021/texmf-dist/fonts/map/fontname/texfonts.map" 1643711536 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "c:/texlive/2021/texmf-dist/fonts/tfm/public/cm/cmr12.tfm" 1643710830 1288 655e228510b4c2a1abe905c368440826 ""
   "c:/texlive/2021/texmf-dist/fonts/tfm/public/fontawesome5/fa5free0regular.tfm" 1643711530 1132 8aee78c25f591abde3c9ce09e694423f ""
@@ -113,9 +113,9 @@
   "c:/texlive/2021/texmf-dist/web2c/texmf.cnf" 1643712067 40042 fe981136cbb5f3715ab1b0e46e3d3892 ""
   "c:/texlive/2021/texmf-var/web2c/pdftex/pdflatex.fmt" 1643714571 2796743 10659587fb051b19e6552f84d82349da ""
   "c:/texlive/2021/texmf.cnf" 1643714364 713 614551405fc44b98efbf516466e3c909 ""
-  "e:/documents/work/academicResearcherCV/main.tex" 1674429817 30688 828af324bc197daca18e2ee7c9523461 ""
-  "main.aux" 1674429846 34 3985256e7290058c681f74d7a3565a19 ""
-  "main.tex" 1674429817 30688 828af324bc197daca18e2ee7c9523461 ""
+  "e:/documents/work/academicResearcherCV/main.tex" 1674430353 30697 953cc179cc38123aa650cbe8f30b090c ""
+  "main.aux" 1674430382 34 3985256e7290058c681f74d7a3565a19 ""
+  "main.tex" 1674430353 30697 953cc179cc38123aa650cbe8f30b090c ""
   (generated)
   "main.log"
   "main.pdf"
