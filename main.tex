@@ -1,3 +1,5 @@
+%!TeX program = xelatex
+
 %% start of file `main.tex'.
 %% Copyright 2014 Francois Mouton (moutonf@gmail.com).
 %
@@ -10,39 +12,81 @@
 % available at http://www.latex-project.org/lppl/.
 
 
-\documentclass[11pt,a4paper,sans]{moderncv/moderncv}        % possible options include font size ('10pt', '11pt' and '12pt'), paper size ('a4paper', 'letterpaper', 'a5paper', 'legalpaper', 'executivepaper' and 'landscape') and font family ('sans' and 'roman')
+\documentclass[10pt,a4paper,sans]{moderncv}        % possible options include font size ('10pt', '11pt' and '12pt'), paper size ('a4paper', 'letterpaper', 'a5paper', 'legalpaper', 'executivepaper' and 'landscape') and font family ('sans' and 'roman')
 
 % moderncv themes
-\moderncvstyle{classic}                             % Only the 'classic' style is fully functional with the modifications made. The other options, 'casual' (default), 'oldstyle' and 'banking' has minor typesetting problems with the current modifications.
-\moderncvcolor{blue}                               % color options 'blue' (default), 'orange', 'green', 'red', 'purple', 'grey' and 'black'
+\moderncvstyle[grey]{classic}                             % Only the 'classic' style is fully functional with the modifications made. The other options, 'casual' (default), 'oldstyle' and 'banking' has minor typesetting problems with the current modifications.
+%\moderncvcolor{purple}                               % color options 'blue' (default), 'orange', 'green', 'red', 'purple', 'grey' and 'black'
+
+
+\usepackage{eso-pic}
+\newcommand\BackgroundPic{%
+  \put(0,0){%
+    \parbox[b][1.95\paperheight]{\paperwidth}{%
+      \vfill
+      \centering
+      % Indicar la imagen de fondo en el siguiente comando
+      \includegraphics[width=\paperwidth,%
+      trim={0 1.5cm 0 1.2cm},clip,%
+      keepaspectratio]{alhambrabanner}%
+      \vfill
+}}}
+
+
+\definecolor{color0}{rgb}{0,0,0}% black
+% \definecolor{color1}{rgb}{0.00,0.38,0.43}% dark teal
+\definecolor{color1}{rgb}{0.30,0.35,0.43}% dark teal
+\definecolor{color2}{rgb}{0.38,0.38,0.38}% dark grey
+\definecolor{color4}{rgb}{0.04,0.12,0.50}% dark blue
+% \definecolor{link}{rgb}{0.00,0.38,0.43}
+
 %\renewcommand{\familydefault}{\sfdefault}         % to set the default font; use '\sfdefault' for the default sans serif font, '\rmdefault' for the default roman one, or any tex font name
 
+%------------------Compile with xelatex!--------------------------------
+\usepackage{fontspec} % For loading fonts
+\defaultfontfeatures{Mapping=tex-text}
+\setsansfont[]{Liberation Sans}
+\setmonofont[]{DejaVu Sans Mono} % Mono font
+
+%-------------------Mess with link colors ------------------------------
+\AtBeginDocument{%
+  \hypersetup{%
+    colorlinks = true,%
+    linkcolor  = color4,%
+    urlcolor   = color4,%
+    allbordercolors={0 0 0},%
+    pdfborderstyle={/S/U/W 1},%
+  }%
+  
+}
+%\renewcommand{\familydefault}{\sfdefault}
+
 % character encoding
-\usepackage[utf8]{inputenc}                       % if you are not using xelatex ou lualatex, replace by the encoding you are using
+% \usepackage[utf8]{inputenc}                       % if you are not using xelatex ou lualatex, replace by the encoding you are using
 
 % adjust the page margins
-\usepackage[scale=0.75]{geometry}
-%\setlength{\hintscolumnwidth}{3cm}                % if you want to change the width of the column of the timeline
+\usepackage[scale=0.82]{geometry}
+\setlength{\hintscolumnwidth}{2cm}                % if you want to change the width of the column of the timeline
 %\setlength{\makecvtitlenamewidth}{10cm}           % for the 'classic' style, if you want to force the width allocated to your name and avoid line breaks. Be careful though, the length is normally calculated to avoid any overlap with your personal info; use this at your own typographical risks.
 
 %-------------------Inlcuding pdfpages package-------------------------------------------------------------
 
-\usepackage{pdfpages/pdfpages}
+\usepackage{pdfpages}
 
 %-------------------Including moderntimeline package-------------------------------------------------------
 
-\usepackage{moderntimeline/moderntimeline}
+\usepackage{moderntimeline}
 
-\tlmaxdates{2004}{2014}                             % Set the scale of the timeline. \tlmaxdates{startDate}{endDate}
+\tlmaxdates{2007}{2023}                             % Set the scale of the timeline. \tlmaxdates{startDate}{endDate}
 
 %-------------------Including xpatch package---------------------------------------------------------------
 
-\usepackage{xpatch/xpatch}
+\usepackage{xpatch}
 
 %-------------------Including Biblatex package-------------------------------------------------------------
 
 \usepackage[url=false,
-    backend=biber,                                  % This can be set to either biber or bibtex. If references are missing just change back and forth between biber and bibtex..
+    backend=bibtex,                                  % This can be set to either biber or bibtex. If references are missing just change back and forth between biber and bibtex..
     style=authoryear,
     doi=false,  
     isbn=false,
@@ -54,6 +98,10 @@
 \addbibresource{cvreferences.bib}                   % Include your bibtex file here. Format: fileName.bib
 
 \input{biblatex_modifications/standard_modification.tex}        % Modifying the default standard.tex style of Biblatex. This modification is performed to include the moderntimeline package.
+
+%-------------------Patching stuff from old moderncv-----------------------------------------------------
+\newlength{\listdoubleitemmaincolumnwidth}%
+\setlength{\listdoubleitemmaincolumnwidth}{6.5cm}% 
 
 %-------------------Defining a CV Reference column style and a CV reference entry block-------------------
 
@@ -82,135 +130,71 @@
     \ifthenelse{\equal{#7}{}}{}{\phonesymbol~#7\newline}
     \ifthenelse{\equal{#8}{}}{}{\mobilephonesymbol~#8}}
 
+% \newcommand{\oldtlcventry}[7]{\tlcventry{#1}{#2}{#3}{#4}{#5}{#6}{#7}}
+\newcommand{\mycventry}[4]{\cventry{\small #1}{\bfseries #2}{{\upshape\color{color2}#3}}{}{}{#4}}
+
+\let\oldtlcventry\tlcventry
+\renewcommand{\tlcventry}[7]{\mycventry{#1--\ifthenelse{\equal{#2}{0}}{present}{#2}}{#3}{#4}{#7}}%
+\renewcommand{\tldatecventry}[6]{\mycventry{#1}{#2}{#3}{#6}}%
+
+\usepackage{tikz}
+
+\newcommand{\ExternalLink}{%
+    \tikz[x=1.2ex, y=1.2ex, baseline=-0.05ex]{% 
+        \begin{scope}[x=1ex, y=1ex]
+            \clip (-0.1,-0.1) 
+                --++ (-0, 1.2) 
+                --++ (0.6, 0) 
+                --++ (0, -0.6) 
+                --++ (0.6, 0) 
+                --++ (0, -1);
+            \path[draw, 
+                line width = 0.5, 
+                rounded corners=0.5] 
+                (0,0) rectangle (1,1);
+        \end{scope}
+        \path[draw, line width = 0.5] (0.5, 0.5) 
+            -- (1, 1);
+        \path[draw, line width = 0.5] (0.6, 1) 
+            -- (1, 1) -- (1, 0.6);
+        }
+    }
+    
 %-------------------Personal Data for CV title-----------------------------------------------------------
 % Example:
-\name{John}{Doe}
-\title{Resumé title}                               % optional, remove / comment the line if not wanted
-\address{street and number}{postcode city}{country}% optional, remove / comment the line if not wanted; the "postcode city" and and "country" arguments can be omitted or provided empty
-\phone[mobile]{+1~(234)~567~890}                   % optional, remove / comment the line if not wanted
-\phone[fixed]{+2~(345)~678~901}                    % optional, remove / comment the line if not wanted
-\phone[fax]{+3~(456)~789~012}                      % optional, remove / comment the line if not wanted
-\email{john@doe.org}                               % optional, remove / comment the line if not wanted
-\homepage{www.johndoe.com}                         % optional, remove / comment the line if not wanted
-\extrainfo{additional information}                 % optional, remove / comment the line if not wanted
-\photo[64pt][0.4pt]{images/picture}                       % optional, remove / comment the line if not wanted; '64pt' is the height the picture must be resized to, 0.4pt is the thickness of the frame around it (put it to 0pt for no frame) and 'picture' is the name of the picture file stored
-\quote{Some quote}                                 % optional, remove / comment the line if not wanted
+\name{David}{Charte}
+\title{Data scientist}                               % optional, remove / comment the line if not wanted
+\address{}{}{Granada, Spain}% optional, remove / comment the line if not wanted; the "postcode city" and and "country" arguments can be omitted or provided empty
+\phone[mobile]{+34~697~494~169}                   % optional, remove / comment the line if not wanted
+%\phone[fixed]{+2~(345)~678~901}                    % optional, remove / comment the line if not wanted
+%\phone[fax]{+3~(456)~789~012}                      % optional, remove / comment the line if not wanted
+\email{david@deivi.ch}                               % optional, remove / comment the line if not wanted
+\homepage{deivi.ch}                         % optional, remove / comment the line if not wanted
+% \extrainfo{born 19 oct 1994}                 % optional, remove / comment the line if not wanted
+% \photo[48pt][0.2pt]{avatar}                       % optional, remove / comment the line if not wanted; '64pt' is the height the picture must be resized to, 0.4pt is the thickness of the frame around it (put it to 0pt for no frame) and 'picture' is the name of the picture file stored
+% \github{github.com/fdavidcl}
+%\quote{Quote}                                 % optional, remove / comment the line if not wanted
+
+\nopagenumbers{}
+\usepackage{setspace}
 
 %-------------------------------------------------------------------------------------------------------
 %   Content
 %-------------------------------------------------------------------------------------------------------
 \begin{document}
+\AddToShipoutPicture*{\BackgroundPic}
+\setstretch{1.0}
 
+%\social[linkedin]{fdavidcl}
+\social[github]{fdavidcl}
 %-------------------Resume------------------------------------------------------------------------------
+
+\vspace*{-3em}
 
 \makecvtitle
 
-%-------------------Education Section-------------------------------------------------------------------
+\vspace{-3em}
 
-\section{Education}
-
-% For a date range: (To indicate 'up to present', set EndYear to 0)
-% Format:  \tlcventry{StartYear}{EndYear}{Degree}{Institution}{City}{\textit{Grade}}{Description}  % Arguments 3 (Degree) to 6 (Grade) can be left empty. 
-% Example: \tlcventry{2012}{0}{BSc Computer Science}{University of MyCity}{MyCity}{}{Also completed several random courses}
-
-\tlcventry{2012}{0}{BSc Computer Science}{University of MyCity}{MyCity}{}{Also completed several random courses}
-
-% For a single year:
-% Format:  \tldatecventry{StartYear}{Degree}{Institution}{City}{\textit{Grade}}{Description}
-% Example: \tldatecventry{2008}{Senior Certificate}{High School MyCity}{MyCity}{\textit{80\%}}{Passed with distinction}
-
-\tldatecventry{2008}{Senior Certificate}{High School MyCity}{MyCity}{\textit{80\%}}{Passed with distinction}
-
-%-------------------PhD Thesis Section------------------------------------------------------------------
-
-\section{PhD thesis}
-
-% Format:  \cvitem{Section Name}{Description}
-% Example: \cvitem{title}{\emph{The title of my PhD goes here}}
-% Example: \cvitem{supervisors}{My supervisors' names go here}
-% Example: \cvitem{description}{Short thesis abstract}
-
-\cvitem{title}{\emph{The title of my PhD goes here}}
-\cvitem{supervisors}{My supervisors' names go here}
-\cvitem{description}{Short thesis abstract}
-
-%-------------------Masters Thesis Section--------------------------------------------------------------
-
-\section{Master thesis}
-
-% Format:  \cvitem{Section Name}{Description}
-% Example: \cvitem{title}{\emph{The title of my Masters goes here}}
-% Example: \cvitem{supervisors}{My supervisors' names go here}
-% Example: \cvitem{description}{Short thesis abstract}
-
-\cvitem{title}{\emph{The title of my Masters goes here}}
-\cvitem{supervisors}{My supervisors' names go here}
-\cvitem{description}{Short thesis abstract}
-
-%-------------------Achievements Section----------------------------------------------------------------
-
-\section{Achievements}
-
-% Format:  \cvlistitem{Achievement}
-% Example: \cvlistitem{Received best student award}
-% Example: \cvlistitem{Another achievement. This achievement is particularly long and therefore normally spans over several lines. Did you notice the indentation when the line wraps?}
-
-\cvlistitem{Received best student award}
-\cvlistitem{Another achievement. This achievement is particularly long and therefore normally spans over several lines. Did you notice the indentation when the line wraps?}
-
-%-------------------Languages Section-------------------------------------------------------------------
-
-\section{Languages}
-
-% Format:  \cvitemwithcomment{Language}{Skill level}{Comment}
-% Example: \cvitemwithcomment{English}{Native}{Mother Tongue}
-% Example: \cvitemwithcomment{French}{Fluent}{Daily practice, all work performed in English}
-
-\cvitemwithcomment{English}{Native}{Mother Tongue}
-\cvitemwithcomment{French}{Fluent}{Daily practice, all work performed in English}
-
-%-------------------Interests Section-------------------------------------------------------------------
-
-\section{Interests}
-
-% Format:  \cvitem{Hobby}{Description}
-% Example: \cvitem{Gaming}{Computer Games}
-% Example: \cvitem{Sport}{Golf, Tennis}
-
-\cvitem{Gaming}{Computer Games}
-\cvitem{Sport}{Golf, Tennis}
-
-%-------------------Experience Section------------------------------------------------------------------
-
-\section{Experience}
-
-%-------------------Vocational Experience---------------------------------------------------------------
-
-\subsection{Vocational}
-
-% Format: \tlcventry{StartYear}{EndYear}{Job title}{Employer}{City}{Country (optional)}{General description no longer than 1--2 lines.\newline{}%
-% Example:
-% \tlcventry{2008}{2011}{System Administrator}{Simple Solutions}{MyCity}{}{Did system administrative work.\newline{}%
-% Main Duties:%
-%  \begin{itemize}%
-%      \item Administrate the servers;
-%      \item Administrate employee computers 
-%          \begin{itemize}%
-%              \item All employee's computers had to be up to date;
-%          \end{itemize}
-%      \item Did some more administrating
-%   \end{itemize}}
-
-\tlcventry{2008}{2011}{System Administrator}{Simple Solutions}{MyCity}{}{Did system administrative work.\newline{}%
-Main Duties:%
-\begin{itemize}%
- \item Administrate the servers;
- \item Administrate employee computers 
-  \begin{itemize}%
-      \item All employee's computers had to be up to date;
-      \end{itemize}
-  \item Did some more administrating
-\end{itemize}}
 
 %-------------------Skills Matrix Section----------------------------------------------------------------
 
@@ -230,44 +214,238 @@ Main Duties:%
 % \cvlistdoubleitem{C\#, Java, Ruby}{MSSQL, MySQL}
 % \cvlistdoubleitem{Photoshop}{Windows, Linux. In the single column list, this item is particularly long to wrap over several lines.}
 
-\subsection{Development}
-\cvdoubleitem{\textbf{Languages}}{C\#, Java, Ruby}{\textbf{Databases}}{MSSQL, MySQL}
+
+\cvitem{\textbf{}}{Data scientist with expertise in unsupervised and supervised deep learning, image processing, classification problems and a strong mathematical foundation.}
+\cvitem{\textbf{}}{Learns fast $\cdot$ Loves teaching $\cdot$ Team player $\cdot$ Organized and meticulous}
+\cvitem{\textbf{Speaks}}{Spanish (native)~$\cdot$~English (advanced)~$\cdot$~French (intermediate)~$\cdot$~Swedish (basic)}
+\subsection{Technologies}
+% \cvdoubleitem{\textbf{Models}}{Autoencoders $\cdot$ Convolutional Networks $\cdot$ Machine learning}{\textbf{ML}}{Google Tensorflow $\cdot$ Keras $\cdot$ Pytorch $\cdot$ Scikit-Learn $\cdot$ Apache Spark}
+\cvitem{\textbf{ML}}{Tensorflow $\cdot$ Keras $\cdot$ Pytorch $\cdot$ Scikit-Learn $\cdot$ Apache Spark $\cdot$ NVidia CUDA $\cdot$ Microsoft AzureML}
+% \cvitem{\textbf{Tasks}}{Feature learning (autoencoders) $\cdot$ Segmentation (CNNs) $\cdot$ Classification $\cdot$ Recommender systems}
 
 
+% \subsection{Development}
+\cvdoubleitem{\textbf{Languages}}{Python $\cdot$ R $\cdot$ Ruby $\cdot$ C++ $\cdot$ C $\cdot$ Shell $\cdot$ SQL}{\textbf{Web}}{HTML $\cdot$ JavaScript $\cdot$ CSS $\cdot$ RWD $\cdot$ Vue.js}
+             
+
+% \subsection{Misc}
+\cvdoubleitem{\textbf{Systems}}{Linux/UNIX $\cdot$ Docker $\cdot$ NGINX}{\textbf{Tools}}{Git $\cdot$ GitHub $\cdot$ \LaTeX{} $\cdot$ VSCode}
+
+%\subsection{Utilities}
+%\cvdoubleitem{\textbf{Documents}}{\LaTeX{}, LibreOffice}{\textbf{Graphics}}{Inkscape, Krita}
+             
+%% \subsection{Otras}
+%% \cvlistdoubleitem{Fast learner}{Good mediator}
+
+
+
+
+% \vspace{-1em}
+\section{Experience}
+
+%% %-------------------Vocational Experience---------------------------------------------------------------
+
+%% \subsection{Vocational}
+
+%% % Format: \tlcventry{StartYear}{EndYear}{Job title}{Employer}{City}{Country (optional)}{General description no longer than 1--2 lines.\newline{}%
+%% % Example:
+%% % \tlcventry{2008}{2011}{System Administrator}{Simple Solutions}{MyCity}{}{Did system administrative work.\newline{}%
+%% % Main Duties:%
+%% %  \begin{itemize}%
+%% %      \item Administrate the servers;
+%% %      \item Administrate employee computers 
+%% %          \begin{itemize}%
+%% %              \item All employee's computers had to be up to date;
+%% %          \end{itemize}
+%% %      \item Did some more administrating
+%% %   \end{itemize}}
+
+\tlcventry{2018}{2022}{Doctoral researcher}{University of Granada, Spain}{}{}{Lecturer training contract under government-funded program ref. FPU17/04069, defending thesis soon.\begin{itemize}
+    \item Main topic: \emph{Finding alternative representations for data through deep learning techniques}
+    \item Authored 11 JCR journal articles (8 in Q1) and 7 software packages
+    \item Collaboration: \textbf{Hospital Universitario de Granada}, detection of COVID-19 in X-ray images (deep learning)
+    \item Collaboration: \textbf{Repsol}, optimization of refinery processes (machine learning and autoencoders)
+    \item Collaboration: \textbf{ArcelorMittal}, \href{https://github.com/ari-dasci/S-metallograph-segmentation}{semantic segmentation of metallographic microstructures \ExternalLink}\item Directed bachelor's thesis: Automatic melody synthesis with Google Magenta \item Directed bachelor's thesis: Neural search for COVID-19 detection in chest X-rays
+    \item Published \href{https://www.youtube.com/playlist?list=PL88MWrW4s4nf-Bc3hccxt3Att8TSS-LBn}{a 5-part free online course \ExternalLink} (in Spanish) on linear algebra and dimensionality reduction\end{itemize}
+}
+\tlcventry{2020}{0}{Online course author and lecturer}{CampusMVP, Spain}{}{}{Course on Data Science and Machine Learning using Python and R, with video-based and written lectures
+}
+\tldatecventry{2018}{Researcher}{University of Granada, Spain}{}{supervisor: Francisco Herrera}{Contract with BBVA-funded project \emph{BigDaPTOOLS}. Development of data preprocessing libraries in R
+}
+\tlcventry{2016}{2018}{Undergraduate researcher}{University of Granada, Spain}{}{}{Analysis of unsupervised deep learning techniques, extraction of multi-view models for supervised learning}
+%-------------------Education Section-------------------------------------------------------------------
+
+% \vspace{-1em}
+\section{Education}
+
+% For a date range: (To indicate 'up to present', set EndYear to 0)
+% Format:  \tlcventry{StartYear}{EndYear}{Degree}{Institution}{City}{\textit{Grade}}{Description}  % Arguments 3 (Degree) to 6 (Grade) can be left empty. 
+% Example: \tlcventry{2012}{0}{BSc Computer Science}{University of MyCity}{MyCity}{}{Also completed several random courses}
+
+\tlcventry{2022}{2022}{PhD in Computer Science}{University of Granada}{Granada}{Focus on data science and machine learning}{}
+
+\tlcventry{2017}{2018}{M.Sc. in Data Science and Computer Engineering}{University of Granada, Spain}{}{}{}
+
+\tlcventry{2012}{2017}{B.Sc. in Computer Science}{University of Granada, Spain: \bfseries 9.40/10}{}{}{\begin{itemize}
+    \item Graduated with best academic record in class
+    \item Co-founded \href{https://libreim.github.io}{LibreIM \ExternalLink}, a student community for Mathematics and Computer Science\end{itemize}}
+
+\tlcventry{2012}{2017}{B.Sc. in Mathematics}{University of Granada, Spain: \bfseries 9.04/10}{}{}{}
+
+% For a single year:
+% Format:  \tldatecventry{StartYear}{Degree}{Institution}{City}{\textit{Grade}}{Description}
+% Example: \tldatecventry{2008}{Senior Certificate}{High School MyCity}{MyCity}{\textit{80\%}}{Passed with distinction}
+
+\tldatecventry{2017}{Intl. Summer School on Deep Learning}{Deusto University \& Rovira i Virgili University}{}{}{}
+
+\tldatecventry{2014}{A practical approach to Data Science and Big Data}{Intl. University of Andalusia (UNIA)}{}{}{}
+
+% \tldatecventry{2013}{New Trends on Computer Engineering}{Centro Mediterráneo (UGR)}{}{}{}
+
+
+\tlcventry{2007}{2012}{Project for detection/stimulus of mathematical talent (ESTALMAT)}{SAEM-Thales, Spain}{}{}{}
+
+%-------------------Achievements Section----------------------------------------------------------------
+
+%% \section{Achievements}
+
+%% % Format:  \cvlistitem{Achievement}
+%% % Example: \cvlistitem{Received best student award}
+%% % Example: \cvlistitem{Another achievement. This achievement is particularly long and therefore normally spans over several lines. Did you notice the indentation when the line wraps?}
+
+%% \cvlistitem{Received best student award}
+%% \cvlistitem{Another achievement. This achievement is particularly long and therefore normally spans over several lines. Did you notice the indentation when the line wraps?}
+
+%-------------------Languages Section-------------------------------------------------------------------
+
+% \section{Languages}
+
+% Format:  \cvitemwithcomment{Language}{Skill level}{Comment}
+% Example: \cvitemwithcomment{English}{Native}{Mother Tongue}
+% Example: \cvitemwithcomment{French}{Fluent}{Daily practice, all work performed in English}
+
+% \cvitemwithcomment{Spanish}{Native}{}
+% \cvitemwithcomment{English}{C1 level}{Cambridge CAE grade A: C1 level with C2 abilities}
+% \cvitemwithcomment{French}{B2 level}{DELF B2 certificate}
+% \cvitemwithcomment{Swedish}{A2 level}{}
+
+%-------------------Experience Section------------------------------------------------------------------
+
+
+
+
+% \clearpage
 %-------------------Publications Section----------------------------------------------------------------
 % The cvitem commands needs to be altered to correctly print all publications with the moderntime package.
 % The cvitem command is edited to remove all forced punctuation within the command.
 % All the typesetting of the text is handled by the modified Biblatex style.
 
-\input{cvitem_modifications/cvitem_modified}        % Removing forced punctuation from cvitem
+% \input{cvitem_modifications/cvitem_modified}        % Removing forced punctuation from cvitem
 
-\nocite{*}                                          % Print all publications.
+% \nocite{*}                                          % Print all publications.
 
-% Format:  \printbibliography[type=Biblatex type,title={Title of publication}]
-% Example: \printbibliography[type=article,title={Journal Publications}]
-% Example: \printbibliography[type=inproceedings,title={Conference Publications}]
-% Example: \printbibliography[type=thesis,title={Thesis}]
+% % Format:  \printbibliography[type=Biblatex type,title={Title of publication}]
+% % Example: \printbibliography[type=article,title={Journal Publications}]
+% % Example: \printbibliography[type=inproceedings,title={Conference Publications}]
+% % Example: \printbibliography[type=thesis,title={Thesis}]
 
-\printbibliography[type=article,title={Journal Publications}]
-\printbibliography[type=inproceedings,title={Conference Publications}]
-\printbibliography[type=thesis,title={Thesis}]
+% \printbibliography[type=article,title={Journal Publications}]
+% %\printbibliography[type=inproceedings,title={Conference Publications}]
+% %\printbibliography[type=thesis,title={Thesis}]
 
-\input{cvitem_modifications/cvitem_moderncvclassic} % Reverting changes to cvitem.
+% \vspace{-.5em}
+% \cvitem{\textbf{Submitted works}}{David Charte, Francisco Charte and Francisco Herrera. ``Reducing Data Complexity using Autoencoders with Class-informed Loss Functions''}
+% \cvitem{}{Julián Luengo, Raúl Moreno, Iván Sevillano, David Charte, Adrián Peláez-Vegas, et al. ``A tutorial on the segmentation of metallographic images: taxonomy, new MetalDAM dataset, deep learning-based ensemble model, experimental analysis and challenges''}
+
+% \input{cvitem_modifications/cvitem_moderncvclassic} % Reverting changes to cvitem.
+
+%-------------------PhD Thesis Section------------------------------------------------------------------
+
+%\section{Bachelor's Thesis}
+
+% Format:  \cvitem{Section Name}{Description}
+% Example: \cvitem{title}{\emph{The title of my PhD goes here}}
+% Example: \cvitem{supervisors}{My supervisors' names go here}
+% Example: \cvitem{description}{Short thesis abstract}
+
+%\cvitem{Title}{\href{http://dx.doi.org/10.13140/RG.2.2.16155.57123/1}{\emph{Reducción de la dimensionalidad en problemas de clasificación con Deep Learning}}}
+%\cvitem{Supervisor}{Francisco Herrera Triguero}
+%\cvitem{Description}{Theoretical analysis of techniques based on deep neural networks that tackle the dimensionality reduction problem. Software for usage of these models and visualization generation.}
+%\cvitem{Grade}{10/10 (Distinction)}
+
+%-------------------Masters Thesis Section--------------------------------------------------------------
+
+%% \section{Master thesis}
+
+%% % Format:  \cvitem{Section Name}{Description}
+%% % Example: \cvitem{title}{\emph{The title of my Masters goes here}}
+%% % Example: \cvitem{supervisors}{My supervisors' names go here}
+%% % Example: \cvitem{description}{Short thesis abstract}
+
+%% \cvitem{title}{\emph{The title of my Masters goes here}}
+%% \cvitem{supervisors}{My supervisors' names go here}
+%% \cvitem{description}{Short thesis abstract}
+
+
+%-------------------Projects---------------------------------------------------------------
+
+% \vspace{-1em}
+\section{Projects}
+
+%\subsection{Vocational}
+
+% Format: \tlcventry{StartYear}{EndYear}{Job title}{Employer}{City}{Country (optional)}{General description no longer than 1--2 lines.\newline{}%
+% Example:
+% \tlcventry{2008}{2011}{System Administrator}{Simple Solutions}{MyCity}{}{Did system administrative work.\newline{}%
+% Main Duties:%
+%  \begin{itemize}%
+%      \item Administrate the servers;
+%      \item Administrate employee computers 
+%          \begin{itemize}%
+%              \item All employee's computers had to be up to date;
+%          \end{itemize}
+%      \item Did some more administrating
+%   \end{itemize}}
+
+\tldatecventry{2021}{\href{https://github.com/fdavidcl/slicer-conv}{Slicer (convolutional)}}{Convolutional autoencoder model for complexity reduction}{}{}{Tensorflow implementation of a convolutional autoencoder which learns from labels with an SVM loss.}
+
+\tldatecventry{2017}{\href{https://github.com/fdavidcl/cometa}{Cometa}}{The comprehensive multi-label data archive}{}{}{Docker container that deploys an automatized web repository to prepare and host multi-label datasets.}
+
+\tldatecventry{2016}{\href{https://github.com/fdavidcl/ruta}{Ruta}}{Software for unsupervised deep architectures}{}{}{R package for training unsupervised Deep Learning models.}
+
+
+\vspace*{-3em}
+% \tldatecventry{2014}{\href{http://fcharte.github.io/mldr}{mldr}}{R package for analyzing and manipulating multilabel datasets}{}{}{Source code: \url{https://github.com/fcharte/mldr}\newline%
+% R library for exploratory data analysis of multi-label datasets.}
+
+
+%-------------------Interests Section-------------------------------------------------------------------
+
+% \section{Interests and communities}
+
+% Format:  \cvitem{Hobby}{Description}
+% Example: \cvitem{Gaming}{Computer Games}
+% Example: \cvitem{Sport}{Golf, Tennis}
+
+% \cvitem{\textbf{Interests}}{Data science, free culture, (human and machine) languages, scientific dissemination}
+
+% \tlcventry{2014}{2020}{\href{https://libreim.github.io}{LibreIM}}{Student community dedicated to Mathematics and Computer Science}{Co-founder}{}{\begin{itemize}\item We organized \href{https://libreim.github.io/t/seminarios/}{regular talks \ExternalLink} for compsci \& math students, several of them given by myself\end{itemize}}
+% \tlcventry{2016}{2017}{\href{https://interferencias.tech}{Interferencias}}{Non-profit group interested in online rights and security}{Participant}{}{}
 
 %-------------------References Section------------------------------------------------------------------
 
-\section{References}
+%% \section{References}
 
-% Format:  \cvreferencecolumn{\cvreference{Name Surname}{Position}{Department}{Company}{City}{Email}{Home Phone}{Cell Phone}}{\cvreference{Name Surname}{Position}{Department}{Company}{City}{Email}{Home Phone}{Cell Phone}}
-% Example: 
-% \subsection{Simple Solutions}
-% \cvreferencecolumn{\cvreference{John Doe}{Developer}{HR}{Simple Solutions}{MyCity}{john@email.com}{+12 (34) 567 8901}{+23 (45) 678 9012}}{\cvreference{Jane Doe}{Accountant}{HR}{Simple Solutions}{MyCity}{jane@email.com}{+34 (56) 789 0123}{+45 (67) 890 1234}}
-% \subsection{Monster Inc}
-% \cvreferencecolumn{\cvreference{Alice Doe}{Manager}{HR}{Monster Inc}{ThatCity}{alice@email.com}{+12 (34) 567 8901}{+23 (45) 678 9012}}{}
+%% % Format:  \cvreferencecolumn{\cvreference{Name Surname}{Position}{Department}{Company}{City}{Email}{Home Phone}{Cell Phone}}{\cvreference{Name Surname}{Position}{Department}{Company}{City}{Email}{Home Phone}{Cell Phone}}
+%% % Example: 
+%% % \subsection{Simple Solutions}
+%% % \cvreferencecolumn{\cvreference{John Doe}{Developer}{HR}{Simple Solutions}{MyCity}{john@email.com}{+12 (34) 567 8901}{+23 (45) 678 9012}}{\cvreference{Jane Doe}{Accountant}{HR}{Simple Solutions}{MyCity}{jane@email.com}{+34 (56) 789 0123}{+45 (67) 890 1234}}
+%% % \subsection{Monster Inc}
+%% % \cvreferencecolumn{\cvreference{Alice Doe}{Manager}{HR}{Monster Inc}{ThatCity}{alice@email.com}{+12 (34) 567 8901}{+23 (45) 678 9012}}{}
 
-\subsection{Simple Solutions}
-\cvreferencecolumn{\cvreference{John Doe}{Developer}{HR}{Simple Solutions}{MyCity}{john@email.com}{+12 (34) 567 8901}{+23 (45) 678 9012}}{\cvreference{Jane Doe}{Accountant}{HR}{Simple Solutions}{MyCity}{jane@email.com}{+34 (56) 789 0123}{+45 (67) 890 1234}} \subsection{Monster Inc}
-\cvreferencecolumn{\cvreference{Alice Doe}{Manager}{HR}{Monster Inc}{ThatCity}{alice@email.com}{+12 (34) 567 8901}{+23 (45) 678 9012}}{}
+%% \subsection{Simple Solutions}
+%% \cvreferencecolumn{\cvreference{John Doe}{Developer}{HR}{Simple Solutions}{MyCity}{john@email.com}{+12 (34) 567 8901}{+23 (45) 678 9012}}{\cvreference{Jane Doe}{Accountant}{HR}{Simple Solutions}{MyCity}{jane@email.com}{+34 (56) 789 0123}{+45 (67) 890 1234}} \subsection{Monster Inc}
+%% \cvreferencecolumn{\cvreference{Alice Doe}{Manager}{HR}{Monster Inc}{ThatCity}{alice@email.com}{+12 (34) 567 8901}{+23 (45) 678 9012}}{}
 
 \clearpage
 
@@ -294,20 +472,44 @@ Main Duties:%
 % \addcontentsline{toc}{subsection}{Portrait}
 % \includepdf[pages=-]{appendix/CertificatePortrait.pdf}
 
-\phantomsection
-\addcontentsline{toc}{section}{Certificates}
+%% \phantomsection
+%% \addcontentsline{toc}{section}{Certificados}
 
-\phantomsection
-\addcontentsline{toc}{subsection}{Landscape}
-\includepdf[pages=-]{appendix/CertificateLandscape.pdf}
+%% \phantomsection
+%% \addcontentsline{toc}{subsection}{Grado en Ingeniería Informática}
+%% \includepdf[pages=-]{appendix/grado/resguardo_informatica}
 
-\phantomsection
-\addcontentsline{toc}{subsection}{Portrait}
-\includepdf[pages=-]{appendix/CertificatePortrait.pdf}
+%% \phantomsection
+%% \addcontentsline{toc}{subsection}{Grado en Matemáticas}
+%% \includepdf[pages=-]{appendix/grado/resguardo_matematicas}
+
+%% \phantomsection
+%% \addcontentsline{toc}{subsection}{International Summer School on Deep Learning}
+%% \includepdf[pages=-]{appendix/cursos/deeplearn2017}
+
+%% \phantomsection
+%% \addcontentsline{toc}{subsection}{Aproximación práctica a la Ciencia de Datos y Big Data}
+%% \includepdf[pages=-,landscape=true]{appendix/cursos/ciencia_datos}
+
+%% \phantomsection
+%% \addcontentsline{toc}{subsection}{Nuevas Tendencias en Ingeniería de Computadores}
+%% \includepdf[pages=1,landscape=true]{appendix/cursos/tendencias-ic}
+
+%% \phantomsection
+%% \addcontentsline{toc}{subsection}{Estalmat}
+%% \includepdf[pages=-,landscape=true]{appendix/cursos/estalmat}
+
+%% \phantomsection
+%% \addcontentsline{toc}{subsection}{Inglés C1}
+%% \includepdf[pages=1]{appendix/idiomas/english_cae}
+
+%% \phantomsection
+%% \addcontentsline{toc}{subsection}{Francés B2}
+%% \includepdf[pages=-,landscape=true]{appendix/idiomas/francais_b2}
 
 %-------------------Cover letter------------------------------------------------------------------------
 
-\input{coverletter.tex}                             % Include cover letter from coverletter.tex
+%% \input{coverletter.tex}                             % Include cover letter from coverletter.tex
 
 %-------------------Document End------------------------------------------------------------------------
 
